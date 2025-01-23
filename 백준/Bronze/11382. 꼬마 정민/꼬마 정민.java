@@ -7,7 +7,9 @@ public class Main {
         a = sc.nextLong();
         b = sc.nextLong();
         c = sc.nextLong();
-        System.out.println(a+b+c);
+        
+        // Math.abs 는 인자값에 대한 절대값을 반환하는 함수이다. 
+        System.out.println(Math.abs(a)+Math.abs(b)+Math.abs(c));
 
     }
 }
