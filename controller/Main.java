@@ -1,55 +1,44 @@
 package controller;
 
-import java.util.Scanner;
+import java.io.*;
+import java.util.StringTokenizer;
 
 public class Main {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
+        // // BufferedReader를 사용하기 위해서는 throws IOException을 해주어야 함.
 
-        Scanner sc = new Scanner(System.in);
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(System.out));
 
-        int h, m, c;
-        h = sc.nextInt();
-        m = sc.nextInt();
-        c = sc.nextInt();
+        int n = Integer.parseInt(br.readLine());
 
-        // 1. 현재시각 시, 분
-        // 2. 요리필요시간 분
+        // br.readLine 으로 띄어쓰기 된 입력값 을 받게 될 경우 String 으로 인식함
+        // int a = Integer.parseInt(br.readLine());         (X)
 
-        // 내 문제 풀이
-//        int resM;
-//        int resH;
-//
-//        if((m + c) >= 60) {
-//
-//            resM = (m + c) % 60;
-//            resH = ((m + c) / 60) + h;
-//
-//
-//            if (resH >= 24) {
-//                resH = resH - 24;
-//            }
-//        } else {
-//            resM = m + c;
-//            resH = h;
-//        }
-//
-//        System.out.println(resH + " " + resM);
-//
+        while(n > 0) {
+            StringTokenizer st = new StringTokenizer(br.readLine());
+            int[] array = new int[2];
 
-        // 다른 사람 문제 풀이
-        int resH = h + (m + c) / 60;
+            for(int i = 0; i < 2; i++) {
+                array[i] = Integer.parseInt(st.nextToken());
+            }
 
-        /**
-         *  60을 넘어가는 조건을 안 걸어도 m+c >= 60 이 아니라면
-         *  나머지는 그대로 m+c 가 되기 때문에 조건을 걸 필요가 없었다.
-         * */
-        int resM = (m + c) % 60;
+            // write() 메소드를 통해 출력할 내용 담기
+            // bw 에 쓸 때 String 타입으로 변환해주지 않으면 이상한 문자열이 출력됨
+            bw.write(String.valueOf(array[0] + array[1]));
+            bw.write("\n");
 
-
-        if (resH >= 24) {
-            resH -= 24;
+            n--;
         }
 
-        System.out.println(resH + " " + resM);
+        // inputStream 닫기
+        br.close();
+
+        // flush() 메소드를 통해 버퍼를 비워내는 동시에 콘솔에 출력
+        bw.flush();
+
+        // outputStream 닫기
+        bw.close();
+
     }
 }
