@@ -25,16 +25,25 @@ public class Main {
 //        int max = Arrays.stream(x).max().getAsInt();
 //        int min = Arrays.stream(x).min().getAsInt();
 
-        // 2. 배열에서 min, max 값 가져오기
-        int max = x[0];
+        // 2. 배열에서 min, max 값 가져오기 => 464ms
+//        int max = x[0];
+//        int min = x[0];
+//        for(int i = 0; i < n; i++) {
+//            if(max < x[i]) {
+//                max = x[i];
+//            }
+//            if(min > x[i]) {
+//                min = x[i];
+//            }
+//        }
+
+        // 3. Math.max(), Math.min() 을 쓰는 방법
         int min = x[0];
-        for(int i = 0; i < n; i++) {
-            if(max < x[i]) {
-                max = x[i];
-            }
-            if(min > x[i]) {
-                min = x[i];
-            }
+        int max = x[0];
+
+        for(int a:x) {
+            max = Math.max(max, a);
+            min = Math.min(min, a);
         }
 
         System.out.println(min + " " + max);
