@@ -29,8 +29,13 @@ public class Main {
         int v = Integer.parseInt(br.readLine());
         // 1. 배열 돌면서 v 와 같은 것 찾아서 count 올리기
         int count = 0;
-        for(int a :array) {
-            if(a == v) {
+//        for(int a :array) {         // 향상된 for문 => 104ms
+//            if(a == v) {
+//                count += 1;
+//            }
+//        }
+        for(int i = 0; i < array.length; i++) {         // for문 => 104ms
+            if(array[i] == v) {
                 count += 1;
             }
         }
