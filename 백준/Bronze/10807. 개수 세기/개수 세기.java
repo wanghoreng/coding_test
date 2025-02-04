@@ -1,3 +1,4 @@
+
 import java.io.IOException;
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
@@ -27,15 +28,15 @@ public class Main {
 
         int v = Integer.parseInt(br.readLine());
         // 1. 배열 돌면서 v 와 같은 것 찾아서 count 올리기
-//        int count = 0;
-//        for(int a :array) {
-//            if(a == v) {
-//                count += 1;
-//            }
-//        }
+        int count = 0;
+        for(int a :array) {
+            if(a == v) {
+                count += 1;
+            }
+        }
 
-        // 2. Stream Filter 로 v 와 같은 것을 골라내어 count 하기
-        long count = Arrays.stream(array).filter(a -> a == v).count();
+        // 2. Stream Filter 로 v 와 같은 것을 골라내어 count 하기 = > 108ms
+//        long count = Arrays.stream(array).filter(a -> a == v).count();
 
         bw.write(String.valueOf(count));
         bw.newLine();
