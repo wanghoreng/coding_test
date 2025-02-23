@@ -16,6 +16,7 @@ public class OneFindMax {
     private static int findMaxNum(int[] array) {
         // 내풀이
         // return Arrays.stream(array).max().getAsInt();
+
         // 1. 각 숫자마다 모든 다른 숫자와 비교해서 최대값인지 확인
         /*
             int number = 0;
