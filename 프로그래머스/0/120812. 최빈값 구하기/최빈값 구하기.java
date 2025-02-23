@@ -2,6 +2,9 @@ import java.util.*;
 
 class Solution {
     public int solution(int[] array) {
+        
+        // 내풀이 
+        /*
         int answer = 0; // 대입연산 1 
         int maxNum = 0; // 대입연산 1 
         
@@ -29,6 +32,26 @@ class Solution {
         
         // 시간복잡도 = 대략 N^2 (대입연산 및 비교연산 제외)
         
+        return answer;
+        */ 
+        
+        // 다른 풀이 
+        int maxCount = 0;
+        int answer = 0;
+        
+        Map<Integer, Integer> map = new HashMap<>(); 
+        for(int number : array) {           // N 
+            int count = map.getOrDefault(number, 0) + 1;
+            if(maxCount < count) {
+                maxCount = count; 
+                answer = number; 
+            } else if(maxCount == count) {
+                answer = -1; 
+            }
+            map.put(number,count); 
+        }
+        
+        // 시간복잡도 = 대략 N 
         return answer;
     }
 } 
