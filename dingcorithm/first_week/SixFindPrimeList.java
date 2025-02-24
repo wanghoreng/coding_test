@@ -1,7 +1,7 @@
 package dingcorithm.first_week;
 
-import java.util.*;
-import java.util.stream.Stream;
+import java.util.ArrayList;
+import java.util.List;
 
 public class SixFindPrimeList {
     public static void main(String[] args) {
@@ -32,22 +32,46 @@ public class SixFindPrimeList {
         // -> 2번방식은 여태 구해온 소수들로만 소수인지아닌지 판별함 (즉, 2,3,5,7,11,13,17로만 판별)
 
         // 3. N의 제곱근보다 크지 않은 어떤 소수로도 나누어 떨어지지 않는다.
-        List<Integer> answerList = new ArrayList<>();
-        for(int i = 2; i <= num; i++) {
-            boolean flag = false;
+//        List<Integer> answerList = new ArrayList<>();
+//        for(int i = 2; i <= num; i++) {
+//            boolean flag = false;
+//
+//            for(int j = 2; j*j <= i; j++) {    // 자기자신까지 나누지 않고, 그 앞의 수까지만 나눔
+//                if(i % j == 0) {
+//                    flag = true;
+//                    break;
+//                }
+//            }
+//
+//            if(!flag) {
+//                answerList.add(i);
+//            }
+//        }
+//
+//        return answerList;
 
-            for(int j = 2; j < Math.sqrt(i); j++) {    // 자기자신까지 나누지 않고, 그 앞의 수까지만 나눔
-                if(i % j == 0) {
-                    flag = true;
-                    break;
-                }
-            }
+        // 4. 아리스토테네스의 체 풀이법
+        List<Integer> list = new ArrayList<>();
 
-            if(!flag) {
-                answerList.add(i);
+        boolean[] prime = new boolean[num+1];
+        // 0 과 1 은 소수가 아니여서 제외
+        prime[0] = true;
+        prime[1] = true;
+
+        for(int i = 2; i*i < prime.length; i++) {
+            if(prime[i]) continue;
+            for(int j = i*i; j < prime.length; j += i) {
+                prime[j] = true;
             }
         }
 
-        return answerList;
+        for(int i = 2; i <= num; i++) {
+
+            if(!prime[i]) {
+                list.add(i);
+            }
+        }
+
+        return list;
     }
 }
