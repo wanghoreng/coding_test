@@ -16,6 +16,8 @@ public class Main {
         // 첫 인덱스의 값과 다음 인덱스의 값이 다르다면, +1을 하고 변수의 값을 다음 인덱스 값으로 바꾼다.
         // 그렇게 1과 0의 연속된 값을 제거한 sum 중에 가장 적은 수가 최소 횟수가 된다.
 
+        // 내풀이
+        /*
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         String s = br.readLine();
         char startNum = s.charAt(0);
@@ -40,5 +42,27 @@ public class Main {
         }
 
         System.out.println(Math.min(zero, one));
+
+         */
+
+        // 다른 풀이
+        BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
+        String s = br.readLine();
+        int zeroToOne = 0;
+        int oneToZero = 0;
+
+        char startNum = s.charAt(0);
+        if(startNum == '0') oneToZero++;
+        else zeroToOne++;
+
+        for(int i = 1; i < s.length(); i++) {
+            if(s.charAt(i) != startNum) {
+                if(s.charAt(i) == '0') oneToZero++;
+                else zeroToOne++;
+                startNum = s.charAt(i);
+            }
+        }
+
+        System.out.println(Math.min(zeroToOne, oneToZero));
     }
 }
