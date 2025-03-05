@@ -56,7 +56,9 @@ public class FindingTarget {
         return false;
     }
 
-    // 무작위 수 찾기 (이진탐색 문제)
+    // 무작위 수 찾기 (이진탐색 문제) 
+    // 이 때 이진탐색의 특징을 알 수 있음 
+    // 이진탐색 특징 : 정렬된 배열에서만 가능함
     private static boolean isExistTargetNumberBinaryProblem(int target, int[] arr) {
         // 수 정렬 하기
 //        for (int i = 0; i < arr.length; i++) {
@@ -67,7 +69,7 @@ public class FindingTarget {
 //            }
 //        }
 
-        // 정렬된 배열
+        // 정렬된 배열 
         int[] array = Arrays.stream(arr).sorted().toArray();
         return isExistingTargetNumberBinary(target, array);
     }
