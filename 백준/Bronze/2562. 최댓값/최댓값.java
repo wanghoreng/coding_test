@@ -1,37 +1,28 @@
-import java.io.IOException;
-import java.io.BufferedReader;
-import java.io.InputStreamReader;
-import java.util.Arrays;
-
-
+import java.io.*;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int[] absArr = new int[9];
 
-        for(int i = 0; i < 9; i++) {
-            absArr[i] = Integer.parseInt(br.readLine());
-        }
+        // 최대값을 저장할 변수
+        int max = 0;
+        // 최대값의 줄을 저장할 변수
+        int line = 0;
 
-        int maxTarget = absArr[0];
-        int index = 0;
-
-        // Math.max() 로 최댓값 구하기는 쉽지만 인덱스를 구하기는 어려웠다.
-//        for(int arr: absArr) {
-//            maxTarget = Math.max(maxTarget, Math.abs(arr));
-//        }
-
-        for(int i = 0; i < 9; i++) {
-            if(maxTarget <= absArr[i]) {
-                maxTarget = absArr[i];
-                index = i+1;
+        for(int i = 1; i <= 9; i++) {
+            // 입력받은 숫자
+            int n = Integer.parseInt(br.readLine());
+            // 새로 입력받은 숫자가 max 보다 크다면, max 에 저장하기
+            if(n > max) {
+                max = n;
+                line = i;
             }
         }
 
+        System.out.println(max);
+        System.out.println(line);
 
-        System.out.println(maxTarget + "\n" + index);
-        br.close();
     }
+
 }
+
