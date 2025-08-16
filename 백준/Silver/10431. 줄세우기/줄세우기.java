@@ -21,67 +21,98 @@ class Main {
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int T = Integer.parseInt(br.readLine());
         for(int t = 1; t <= T; t++) {
+            // 방법 2. 리팩토링
             StringTokenizer st = new StringTokenizer(br.readLine());
             int tt = Integer.parseInt(st.nextToken());
-            int[] number = new int[20];
-            int[] firstIndexArr = new int[20];
-            int[] lastIndexArr = new int[20];
 
-
-            // 20명 번호 담기
-            int index = 0;
-            while(st.hasMoreTokens()) {
-                number[index] = Integer.parseInt(st.nextToken());
-                index++;
-            }
-
-            // 오름차순으로 정렬한 번호를 담을 리스트
             List<Integer> line = new ArrayList<>();
+            int totalStep = 0;
 
-            for(int i = 0; i < number.length; i++) {
-                boolean isOk = false;
+            for(int i = 0; i < 20; i++) {
+                int student = Integer.parseInt(st.nextToken());
+                int insertIndex = -1;
 
-                // 줄을 서는 첫 학생이라면 바로 줄 세우기
-                if(line.isEmpty()) {
-                    line.add(number[i]);
-                    firstIndexArr[i] = i;
-                    continue;
-                }
-                // 이미 줄을 선 학생과 키 비교
                 for(int j = 0; j < line.size(); j++) {
-                    // 줄을 선 학생들은 이미 오름차순이므로
-                    // 바로 본인보다 키가 큰 학생이 나오면 해당 인덱스에 넣는다.
-                    if(number[i] < line.get(j)) {
-                        line.add(j, number[i]);
-                        firstIndexArr[i] = j; // 줄을 선 인덱스를 가지고 있는다.
-                        isOk = true;
+                    if(student < line.get(j)) {
+                        insertIndex = j;
                         break;
                     }
                 }
 
-                // 만약 줄을 선 학생들중 본인이 가장 크다면
-                // 맨 뒤에 선다.
-                if(!isOk) {
-                    line.add(number[i]);
-                    firstIndexArr[i] = i;
+                // 줄이 비어있거나, 키가 가장 큰 경우
+                if(insertIndex == -1) {
+                    line.add(student);
+                } else {
+                    line.add(insertIndex, student);
+                    totalStep += (line.size() - 1) - insertIndex;
                 }
-            }
-
-            // 학생들의 마지막 위치를 line 에서 찾아서 넣는다.  
-            for(int i = 0; i < number.length; i++) {
-                lastIndexArr[i] = line.indexOf(number[i]);
-            }
-
-            // 처음 위치와 마지막 위치를 비교해서 카운트한다.
-            int totalStep = 0, indexStep = 0;
-
-            while(indexStep < 20) {
-                totalStep += lastIndexArr[indexStep] - firstIndexArr[indexStep];
-                indexStep++;
             }
 
             // 출력
             System.out.println(tt + " " + totalStep);
+
+            // 방법 1. 비효율적
+//            StringTokenizer st = new StringTokenizer(br.readLine());
+//            int tt = Integer.parseInt(st.nextToken());
+//            int[] number = new int[20];
+//            int[] firstIndexArr = new int[20];
+//            int[] lastIndexArr = new int[20];
+//
+//
+//            // 20명 번호 담기
+//            int index = 0;
+//            while(st.hasMoreTokens()) {
+//                number[index] = Integer.parseInt(st.nextToken());
+//                index++;
+//            }
+//
+//            // 오름차순으로 정렬한 번호를 담을 리스트
+//            List<Integer> line = new ArrayList<>();
+//
+//            for(int i = 0; i < number.length; i++) {
+//                boolean isOk = false;
+//
+//                // 줄을 서는 첫 학생이라면 바로 줄 세우기
+//                if(line.isEmpty()) {
+//                    line.add(number[i]);
+//                    firstIndexArr[i] = i;
+//                    continue;
+//                }
+//                // 이미 줄을 선 학생과 키 비교
+//                for(int j = 0; j < line.size(); j++) {
+//                    // 줄을 선 학생들은 이미 오름차순이므로
+//                    // 바로 본인보다 키가 큰 학생이 나오면 해당 인덱스에 넣는다.
+//                    if(number[i] < line.get(j)) {
+//                        line.add(j, number[i]);
+//                        firstIndexArr[i] = j; // 줄을 선 인덱스를 가지고 있는다.
+//                        isOk = true;
+//                        break;
+//                    }
+//                }
+//
+//                // 만약 줄을 선 학생들중 본인이 가장 크다면
+//                // 맨 뒤에 선다.
+//                if(!isOk) {
+//                    line.add(number[i]);
+//                    firstIndexArr[i] = i;
+//                }
+//            }
+//
+//            // 학생들의 마지막 위치를 line 에서 찾아서 넣는다.
+//            for(int i = 0; i < number.length; i++) {
+//                lastIndexArr[i] = line.indexOf(number[i]);
+//            }
+//
+//            // 처음 위치와 마지막 위치를 비교해서 카운트한다.
+//            int totalStep = 0, indexStep = 0;
+//
+//            while(indexStep < 20) {
+//                totalStep += lastIndexArr[indexStep] - firstIndexArr[indexStep];
+//                indexStep++;
+//            }
+//
+//            // 출력
+//            System.out.println(tt + " " + totalStep);
         }
     }
 }
