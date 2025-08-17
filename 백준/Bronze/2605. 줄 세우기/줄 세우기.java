@@ -19,10 +19,12 @@ class Main {
             int number = Integer.parseInt(st.nextToken());
 
             // 0 이면 제자리
-            if(number == 0 || line.isEmpty()) line.add(i);
-            else {
-               line.add(line.size() - number, i);
-            }
+//            if(number == 0 || line.isEmpty()) line.add(i);
+//            else {
+//               line.add(line.size() - number, i);
+//            }
+            // 위 네줄을 한줄로 처리
+            line.add(line.size()- number, i);
         }
 
         StringBuilder sb = new StringBuilder();
