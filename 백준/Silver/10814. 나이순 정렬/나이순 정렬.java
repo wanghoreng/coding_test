@@ -15,7 +15,7 @@ public class Main {
     // 나이가 같으면 먼저 가입한 사람이 앞에 오는 순서로 정렬
     public static void main(String[] args) throws IOException {
 
-        // 방법 2. 카운팅 정렬해서 푸는 방법
+        // 방법 2. 카운팅 정렬해서 푸는 방법 (320ms) 
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
         int N = Integer.parseInt(br.readLine());
 
@@ -66,4 +66,5 @@ public class Main {
 //
 //        System.out.println(sb);
     }
+
 }
