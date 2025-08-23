@@ -1,3 +1,4 @@
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -11,16 +12,18 @@ public class Main {
         int N = Integer.parseInt(br.readLine());
         // 카운트 정렬
         int[] count = new int[10001];
+        int max = Integer.MIN_VALUE;
         for(int i = 0; i < N; i++) {
             int index = Integer.parseInt(br.readLine());
+            max = Math.max(index, max);
             count[index]++;
         }
 
         StringBuilder sb = new StringBuilder();
-        for(int i = 0; i < 10001; i++) {
+        for(int i = 0; i <= max; i++) {
             while(count[i] != 0) {
                 sb.append(i).append("\n");
-                count[i]--; 
+                count[i]--;
             }
         }
 
