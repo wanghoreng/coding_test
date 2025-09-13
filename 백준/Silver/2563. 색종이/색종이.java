@@ -1,45 +1,48 @@
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
+import java.util.StringTokenizer;
 
-
-import java.io.*;
-import java.util.*;
 
 class Main {
-    //도화지 : 가로 * 세로 = 100 * 100
-    //색종이 : 가로 * 세로 = 10 * 10
+    public static void main(String[] args) throws IOException {
+        // 도화지 크기  100, 100
+        // 색종이 크기  10, 10
 
-    public static void main(String[] args) throws IOException{
+        // 설계
+        // 1. boolean[100][100] paper 크기를 만들기
+        // 2. 색종이가 덮혀져있는 부분을 paper 에서 true 로 만들기
+        // 3. true 로 덮힌 곳을 카운팅하기
+
+
         BufferedReader br = new BufferedReader(new InputStreamReader(System.in));
-        int T = Integer.parseInt(br.readLine());
-        // 기본값 false 로 세팅됨
         boolean[][] paper = new boolean[100][100];
 
-        for(int t = 0; t < T; t++) {
+        int colorCount = Integer.parseInt(br.readLine());
+
+        for(int cnt = 0; cnt < colorCount; cnt++) {
             StringTokenizer st = new StringTokenizer(br.readLine());
-            int x = Integer.parseInt(st.nextToken());
-            int y = Integer.parseInt(st.nextToken());
+            int X = Integer.parseInt(st.nextToken());
+            int Y = Integer.parseInt(st.nextToken());
 
-            // 색종이 영역만큼 true 로 표시
-            for (int i = x; i < x+10; i++) {
-                for (int j = y; j < y + 10; j++) {
-                    // 색종이를 덮을 때 마다 true 로 설정이 되는데
-                    // 이미 true 인 경우 다시 true 로 설정이 되기 때문에 값에 변화가 없음
-                    // 즉, 여러 장의 색종이가 같은 위치를 덮어도 결과는 항상 true 이기 때문임
-                    paper[i][j] = true;
+            for(int y = Y; y < Y+10; y++) {
+                for(int x = X; x < X+10; x++) {
+                    paper[y][x] = true;
                 }
             }
         }
 
-        int area = 0;
-        // true 인 칸 세기
-        for (int i = 0; i < 100; i++) {
-            for (int j = 0; j < 100; j++) {
-                if (paper[i][j]) {
-                    area++;
-                }
+        int res = 0;
+        for(int i = 0; i < 100; i++) {
+            for(int j = 0; j < 100; j++) {
+                if(paper[i][j]) res++;
             }
         }
 
-        System.out.println(area);
+        // 출력
+        // 색종이가 붙은 검은 영역의 넓이 구하기
+        System.out.println(res);
+
 
     }
 }
