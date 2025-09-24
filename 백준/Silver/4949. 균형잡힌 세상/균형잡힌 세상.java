@@ -1,4 +1,3 @@
-
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
@@ -20,13 +19,11 @@ public class Main {
             Deque<Character> stack = new ArrayDeque<>();
             boolean flag = true;
 
-            char lastVPS = 0;
             for(int i = 0; i < str.length(); i++) {
                 char ch = str.charAt(i);
                 // 여는 괄호일 경우 stack 에 삽입
                 if(ch == '(' || ch == '[') {
                     stack.offerLast(ch);
-                    lastVPS = ch;
                 }
                 else if(ch == ')' || ch == ']'){ // 닫는 괄호일 경우
                     if(stack.isEmpty()) {
